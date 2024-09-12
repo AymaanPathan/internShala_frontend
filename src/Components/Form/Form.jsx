@@ -47,6 +47,14 @@ const Form = () => {
   ];
 
   const handleSubmit = async (e) => {
+    const isMobile =
+      /Mobi|Android/i.test(navigator.userAgent) || window.innerWidth < 768;
+
+    if (isMobile) {
+      return toast.error(
+        "Form submission is only allowed on a desktop or laptop."
+      );
+    }
     if (!email || !password || !coverLetter) {
       return toast.error("Please Provide All Info");
     } else {
